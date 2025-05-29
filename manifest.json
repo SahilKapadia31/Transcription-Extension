@@ -1,0 +1,44 @@
+{
+    "manifest_version": 3,
+    "name": "Auto Meeting Transcriber",
+    "version": "2.0",
+    "description": "Automatically transcribes online meetings with system audio capture and speaker separation",
+    "permissions": [
+        "tabs",
+        "scripting",
+        "storage",
+        "activeTab",
+        "tabCapture",
+        "notifications",
+        "desktopCapture"
+    ],
+    "host_permissions": [
+        "*://*.zoom.us/*",
+        "*://meet.google.com/*",
+        "*://*.teams.microsoft.com/*",
+        "*://*.webex.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.zoom.us/*",
+                "*://meet.google.com/*",
+                "*://*.teams.microsoft.com/*",
+                "*://*.webex.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon16.png",
+            "48": "icon48.png"
+        }
+    }
+}
